@@ -1,0 +1,658 @@
+\documentclass[12pt]{article}
+\usepackage{geometry}
+\newgeometry{tmargin=2cm, bmargin=2cm, lmargin=3cm, rmargin=3cm}
+\linespread{1.25} 
+\usepackage[utf8]{inputenc}
+\usepackage{polski}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage[document]{ragged2e}
+\usepackage{eucal}
+\usepackage{titlesec}
+\usepackage{scrextend}
+\usepackage{tikz}
+\usepackage{xparse}
+\usepackage{physics}
+\everymath{\displaystyle}
+\numberwithin{equation}{subsection}
+\renewcommand{\theequation}{
+	\thesubsection
+	\ifnum\value{equation}>1
+	.\arabic{equation}
+	\fi
+}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{1em}{}
+%
+%\titleformat{\subsection}{\normalsize\normalfont}{\thesubsection}{1em}{}
+%%%%  subsekcja bez bolda
+%
+\newcommand{\SEM}{\mathcal{E}}
+
+% \wzf{opis}{równanie}, pojedyncza para opis <=> równanie, z osobnym numerem \qty(subsekcja)
+\newcommand{\wzf}[2]{\subsection{#1} \begin{equation}#2\end{equation}\\}
+
+% \wzm{opis}, tworzy subsekcje mogącą zawierać wiele równań
+\newcommand{\wzm}[1]{\subsection{#1}}
+
+\newcommand{\wzmm}[1]{\subsubsection{#1}}
+
+% \wze{równanie}, tworzy samo równanie w obecnym kontekście
+\newcommand{\wze}[1]{\begin{equation}#1\end{equation}\\}
+
+% \wzt{opis}, tworzy opis bez numeru subsekcji
+\newcommand{\wzt}[1]{\begin{addmargin}[2em]{1em}#1\end{addmargin}}
+
+%\wzh{opis}{równanie}, wzór w wzm
+\newcommand{\wzh}[2]{\begin{addmargin}[2em]{1em}#1\end{addmargin}\vspace{2mm} \begin{equation}#2\end{equation}\\}
+
+\title{Wzory na OF-a}
+\author{Maciej Ziobro}
+\date{}
+\begin{document}
+	\begin{flushleft}\
+
+		%
+		\maketitle
+		\newpage
+
+		\tableofcontents
+		\newpage
+		%
+		\section{Kinematyka}
+			\wzf{Wektor położenia}{\vec{r} = x\hat{i} + y\hat{j} + z\hat{k}}
+			\wzf{Wektor przemieszczenia}{\Delta \vec{r} = \vec{r_2} - \vec{r_1}}
+			\wzf{Prędkość średnia}{v_{sr} = \frac{\Delta x}{\Delta t} = \frac{\Delta \vec{r}}{\Delta t}}
+			\wzm{Prędkość chwilowa}
+			\wze{v = \lim_{\Delta t \rightarrow 0} \frac{\Delta r}{\Delta t} = \dv{r}{t}}
+			\wze{\vec{v} = \dv{\vec{r}}{t} = v_x\hat{i} + v_y\hat{j} + v_z\hat{k} = \dv{x}{t}\hat{i}+ \dv{y}{t}\hat{j} + \dv{z}{t}\hat{k}}
+			\wzf{Przyspieszenie średnia}{a_{sr} = \frac{\Delta v}{\Delta t}}
+			\wzf{Przyspieszenie chwilowe}{a = \dv{v}{t} = \dv[2]{x}{t}}
+			\wzm{Ruch jednostajnie przyspieszony (a = const)}
+				\wze{v = v_0 + at}
+				\wze{x - x_0 = v_0 t + \frac{1}{2} at^2}
+				\wze{v^2 = v^2_0 + 2a\qty(x - x_0)}
+				\wze{x - x_0 = \frac{1}{2}\qty(v_0 + v)t}
+				\wze{x - x_0 = vt  - \frac{1}{2}at^2}
+			\wzm{Ruch jednostajny po okręgu}
+				\wze{a_d = \frac{v^2}{R} = \omega ^2 R}
+				\wze{F_d = m\frac{v^2}{R}}
+				\wze{T = \frac{2 \pi R}{v}}
+			\wzm{Obroty}
+				\wzh{$\theta$ to miara łukowa kąta}{\theta = \frac{s}{r}}
+				\wzh{$\Delta t$ to średnia prędkość kątowa}{\omega_{sr} = \frac{\Delta}{\theta}}
+				\wzh{chwilowa prędkość kątowa}{\omega = dv{\theta}{t}}
+				\wzh{średnie przyspieszenie kątowa}{\alpha_{sr} = \frac{\Delta\omega}{\Delta t}}
+				\wzh{chwilowe przyspieszenie kątowe}{\alpha = \dv{\omega}{t}}
+				\wzh{$\theta \to rad$}{s = \theta r}
+				\wzh{$\omega \to~$odnosi się do kąta w radianach}{v  = \omega r}
+				\wze{T = \frac{\pi r}{v} = \frac{2\pi}{\omega}}
+				\wzh{przypieszenie kątowe w mierze łukowej}{\varepsilon = \dv{\omega}{t} = \dv[2]{\alpha}{t}}
+				\wzh{miara łukowa, $a_{rad} \to$ składowa~radialna}{a_{rad} = \frac{v_2}{r} = \omega^2r}
+				\wzh{$I~\to$ moment bezwładności}{E_k = \sum \frac{1}{2}m_iv_i = \qty(\sum \frac{1}{2}m_ir^2_i)\omega^2 = \frac{1}{2}I\omega^2}
+				\wze{I = \sum m_ir^2_i = \int r^2dm}
+				\wzh{}{M = \qty(r)\qty(F \sin(\phi)) = rF_{st}}
+				\wzh{$M~\to~$Moment bezwładności; $F_{st}\to~$składowa styczna siły}{M = \qty(r)\qty(F \sin \phi) = rF_{st}}
+				\wzh{układ cząstek}{L = I\omega = const}
+				\wze{M_{wyp} = I\alpha}
+				\wzh{$r_{\bot}~\to~$Odległość osi obrotu od prostej wzdłuż, której leży $\vec{F}$}{M = \qty(r \sin \phi)\qty(F) = \qty(r_{\bot})\qty(F)}
+				\wzh{Twierdzenie Steinera, $I_{SM}~\to$ moment bezwładności ciała względem osi równoległej do danej i przechodzącej przez śM}{I = I_{SM} + mh^2}
+			\wzm{Praca i energia w ruchu obrotowym; przyjmując, że zmienia siętylko energia kinetyczna}
+				\wzh{$\theta \to$ położenie kątowe}{\Delta E_k = \frac{1}{2}I\qty(\Delta \omega)^2 = \int^{\theta_{konc}}_{\theta_{pocz}} Md\theta}
+				\wze{P = M\omega}
+				\wzh{Dla stałego M}{\Delta E_k = M\qty(\theta_{konc}  - \theta_{pocz})} 
+			\wzm{Obrót ze stałym przyspieszeniem kątowym}
+				\wze{\omega = \omega_0 + \alpha t}
+				\wze{\theta  - \theta_0 = \omega_0 t + \frac{1}{2} \alpha t^2}
+				\wze{\omega^2 = \omega^2_0 + 2\alpha\qty(\theta - \theta_0)}
+				\wze{\theta - \theta_0 = \frac{1}{2}\qty(\omega_0 + \omega)t}
+				\wze{\theta- \theta_0 = \omega t - \frac{1}{2}\alpha t^2}
+			\wzm{Toczenie}
+				\wze{v_{SM} = \omega R}
+				\wze{E_k = \frac{1}{2}I_{SM}\omega^2 + \frac{1}{2}mv_{SM}^2}
+				\wze{E_{k~ruchu~obrotowego} = \frac{1}{2}I_{SM}\omega^2}
+				\wze{E_{k~ruchu~postepowego} = \frac{1}{2}mv^2_{SM}}
+				\wzh{Toczenie się bez poślizgu}{a_{SM} = \alpha R}
+			\wzm{Toczenie po równi pochyłej}
+				\wze{a_{SM,x} = \frac{g~\sin\alpha}{1 + \frac{I_{SM}}{mR^2}}}
+			\wzm{Moment siły $\to$ M, Moment pędu $\to$ $l$ i II z.d. dla ruchu obrotowego}
+				\wze{\vec{M} = \vec{r} \times \vec{F}}
+				\wze{M = rF\sin \phi = r_{\bot }F = rF_{\bot }}
+				\wze{\vec{l} = \vec{r} \times \vec{p} = m\qty(\vec{r} \times \vec{v})}
+				\wze{l = rmv\sin \phi = rp_{\bot} = rmv_{\bot} = r_{\bot}p = r_{\bot}mv}
+				\wze{\vec{M_{wyp}} = \dv{\vec{l}}{t}}
+				\wzh{$L~\to$ układ cząstek}{\vec{L} = \sum^n_{i=1} \vec{l_i}}
+				\wze{\vec{M_{wyp}} = \dv{\vec{L}}{t}}
+				\wzh{układ cząstek}{L = I\omega = const}
+				\wze{I_{pocz}\omega_{pocz} = I_{konc}\omega_{konc}}
+				\wze{\Delta L_x = \Delta L_y = \Delta L_z = 0}
+			\wzm{Rzut pionowy}
+				\wze{y = h_0 + v_0t - \frac{gt^2}{2}}
+				\wzm{Rzut poziomy}
+				\wze{ y = \frac{gx^2}{2v_0^2}}
+				\wze{ v_x = const = v_0\cos \alpha}
+				\wze{ v_{0y} = 0}
+				\wze{ v_y = gt}
+			\wzm{Rzut ukośny}
+				\wze{ v_x = v_0\cos \alpha}
+				\wze{ v_{0y} =  v_0\sin \alpha}
+				\wze{ t_w = \frac{v_{0y}}{g}}
+				\wze{ t_c = 2t_w = 2\frac{v_{0y}}{g}}
+				\wze{ h_{max} = v_{0y}t_w =\frac{\qty(v_0 \sin \alpha)^2}{2g}}
+				\wze{ l = v_x t_c}
+				\wze{ y =h_0 + x\tan \alpha - \frac{gx^2}{2v_x^2}}
+		\section{Dynamika}
+				\wze{a_{SM,x} = \frac{g~\sin\alpha}{1 + \frac{I_{SM}}{mR^2}}}
+			\wzm{II Zasada Dynamiki Newtona}
+				\wze{F_{wyp} = ma}
+				\wze{F_{wyp~x} = ma_x}
+				\wze{F_{wyp~y} = ma_y}
+				\wze{F_{wyp~z} = ma_z}
+				\wzm{II Zasada Dynamiki Newtona w układzie nieinercjalnym}
+				\wzh{wypadkowa sił~rzeczywistych}{\vec{F_{wyp_{rz}}} + \vec{F_b} = m\vec{a}~\qty(\vec{F_{wyp_{rz}}})}
+			\wzm{I Zasada Dynamiki Newtona w układzie nieinercjalnym}
+				\wze{\vec{F_{wyp_{rz}}} + \vec{F_b} = 0}
+			\wzm{Siła Tarcia i Opór Powietrza}
+				\wzt{$C \to wsp$ół$czynnik~oporu; \mu \to wsp$ł$czynnik~tarcia; \rho \to $gęstość}
+				\wze{f_{s~max} = \mu_s N}
+				\wze{f_{k} = \mu_k N}
+				\wze{D = \frac{1}{2}C\rho Sv^2}
+				\wzh{Siła Bezwładności}{F_b = -ma}
+				\wzh{Siła Coriolisa, $\omega \to $~prędkość kątowa}{F_C = 2m\qty(\vec{v} \times \vec{\omega})}
+			\wzm{Pęd i Popęd}
+				\wze{\vec{p} = m\vec{v}}
+				\wze{\vec{J} = \Delta\vec{p} = \vec{F_{sr}} = \displaystyle \int_{t_0}^{t_k}\vec{F}\qty(t)dt \Delta t}
+				\wze{\vec{F_{wyp}} = \dv{\vec{p}}{t}}
+			\wzm{Ciąg zderzeń np. pocisków z nieruchomą ścianą}
+				\wzh{$n \to$ liczba zderzeń}{J = -n\Delta p}
+				\wze{F_{sr} = \frac{J}{\Delta t} = -\frac{n\Delta p}{\Delta t} = -\frac{n}{\Delta t}m\Delta =-\frac{nm}{\Delta t}\Delta v}
+		\section{Praca, Moc, Energia}
+				\wze{_k = \frac{1}{2}mv^2}
+				\wze{W = \Delta E = \vec{F} \vec{d} = Fd~\cos \alpha = F_x d}
+				\wzh{$W_g \to$ praca siły grawitacji}{W_g = mgd \cos \alpha = -\Delta E_p}
+				\wzh{praca siły zachowawczej}{\Delta E_p = -W_{F_z}  = - \int_{x_0}^{x_1} F_z \qty(x)dx \qty(W_{F_z})}
+				\wze{F\qty(x) = -\dv{E_p\qty(x)}{x}}
+				\wzh{$\vec{F_s}\to $siła sprężystości; k  $\to $ współczynnik sprężystości}{\vec{F_s} = -k\vec{d}}
+				\wze{W_s = \frac{1}{2}kx^2_0 - \frac{1}{2}kx^2_k}
+				\wze{W_s = \displaystyle \int_{x_0}^{x_1} F_x \qty(x) dx + \int_{y_0}^{y_1} F_y \qty(x) dy +\int_{z_0}^{z_1} F_z \qty(x) dz}
+				\wzh{Praca wykonana nad układem w obecności siły tarcia}{W = \Delta E_{mech} +  \Delta E_{term} = \Delta E_{mech} + \vec{f{k}}d}
+				\wzh{moc średnia}{P_{sr} = \frac{W}{\Delta t}}
+				\wzh{moc chwilowa}{P = \dv{W}{t}= \vec{F}\vec{v}}
+			\wzm{Zamiana energii wewnętrznej na mechaniczną przez siłę zewnętrzną}
+				\wzh{$d \to$ przemieszczenie środka masy}{\Delta E_{mech} = \Delta E_k + \Delta E_p = Fd\cos \alpha}
+			\wzm{Zderzenia - ogólnie}
+				\wze{\vec p = const}
+				\wze{\frac{m_1}{m_2} = -\frac{\Delta v_1}{\Delta v_2}}
+				\wze{m_1v_{1pocz} + m_2v_{2pocz} = m_1v_{1konc} + m_2v_{2konc}}
+			\wzm{Zderzenie całkowicie niesprężyste}
+				\wze{m_1v_{1pocz} + m_2v_{2pocz} = m_1v_{1konc} + m_2v_{2konc}}
+			\wzm{Zderzenie sprężyste}
+				\wze{\Delta E = 0}	
+				\wze{v_{1 konc} = \frac{m_1-m_2}{m_1+m_2}v_{1 pocz} + \frac{2m_2}{m_1+m_2}v_{2 pocz}}
+				\wze{v_{2 konc} = + \frac{2m_1}{m_1+m_2}v_{1 pocz} + \frac{m_2-m_1}{m_1+m_2}v_{2 pocz}}
+			\wzm{Zderzenie  w dwóch wymiarach}
+				\wzt{$\alpha \to$ kąt początkowy; $\theta \to$ kąt końcowy}
+				\wzh{analiza  w osi x}{m_1v_{1 pocz}\cos \alpha_1+ m_2v_{2 pocz} \cos \alpha_1= m_1v_{1 konc}\cos \theta_1 +  m_2v_{2 konc}\cos \theta_2}
+				\wzh{analiza  w osi y}{m_1v_{1 pocz}\sin \alpha_1+ m_2v_{2 pocz} \sin \alpha_1= m_1v_{1 konc}\sin \theta_1  + m_2v_{2 konc}\sin \theta_2}
+		\section{Układy cząstek}
+			\wzm{środek masy układu kilku cząstek}
+				\wzh{środek masy ciała jednorodnego, $n \to$ liczba cząstek}{x_{SM} = \frac{1}{m_u} \sum ^{n}_{ i = 1} x_im_i;~~y_{SM} = \frac{1}{m_u}\sum ^{ i = 1}_{ i = 1} ~y_im_i;~~z_{SM} = \frac{1}{m_u} \sum ^{n}_{ i = 1} z_im_i}
+			\wzm{II Zasada Dynamiki Newtona dla układu cząstek}
+				\wze{\vec F_{wyp} = m_u\vec a_{SM}}
+			\wzm{Pęd i zachowanie pędu dla układu cząstek, w układzie izolowanym}
+				\wze{\vec {p} = m_u\vec {a_{SM}}}
+				\wze{\vec {p} = const}
+				\wze{\vec{F_{wyp, x}} = 0 \implies \vec{p_x} = const}
+			\wzm{Rakieta}
+				\wzh{siła ciągu silnika, $R \to$ spalanie paliwa; $v_{wzgl} \to$ szybkość gazów względem rakiety}{T = Rv_{wzgl} = m_ua}
+				\wze{v_k - v_p = \Delta v = v_{wzgl}~ln\frac{m_{u~pocz}}{m_{u~konc}}}
+		\section{Równowaga}
+			\wzh{warunki równowagi statycznej ciała, gdy $v = 0 \wedge \omega = 0$}{\vec{P} = 0 oraz \vec{L} = 0}
+			\wzh{warunki równowagi ciała}{\vec{M_wyp} = 0 \wedge \vec{F_wyp} = 0}
+			\wzh{gdy $\vec{g_i} = \vec{g_j}$ dla każdego$i$ i $j$}{X_{SM} = x_{SC}}
+		\section{Sprężystość}
+			\wzh{Rozciąganie i ściskanie, $F \to$ wartość siły, $S\to$ pole przekroju prostopadłego do kierunku, $E\to$ moduł Younga, $frac{\Delta L}{L}~\to$ względna zmiana długości $\vec{F}$}{\frac{F}{S} = E\frac{\Delta L}{L}}
+			\wzh{Ścinanie, $F \to$ wartość siły, $S\to$ pole przekroju równoległego do kierunku $\vec{F}$, $G\to$ moduł ścinania, $\Delta x\to$ przemieszczenie częsci ciała w kierunku działania sił $L\to$ długość prostopadła do kierunku siły}{\frac{F}{S} = G\frac{\Delta x}{L}}
+			\wzh{Naprężenie objętościowe, $p \to$ wartość siły, $S\to$ pole przekroju równoległego do kierunku $\vec{F}$, $K\to$ moduł ścinania, $\frac{\Delta V}{V}\to$ względna zmiana objętości}{p = K\frac{\Delta V}{V}}
+		\section{Grawitacja}
+			\wzh{Gdzie stała grawitacyjna $G = 6,67 \times 10^{-11}~N\frac{m^2}{kg^2}$}{F = G\frac{m_1m_2}{r^2}}
+			\wzt{Ciało w kształcie jednorodnej kulistej powłkoki przyciąga cząstke znajdującą na zewnątrz powłoki, tak jakby masa powłokibyła w jej środku masy}
+			\wze{a_g = \frac{GM}{r^2}}
+			\wze{g = a_g - \omega^2R}
+			\wzh{Siła ciązenia wewnątrz kuli, $R\to$ promień kuli, $r\to$ odległość ciała od środka kuli}{F = \frac{GmM}{R^3}r}
+			\wzh{grawitacyjna energia potencjalna}{E_p = -\frac{GMm}{r}}
+			\wzh{grawitacyjna energia potencjalna}{E_p = -\frac{Gm_1m_2}{r} -\frac{Gm_2m_3}{r} -\frac{Gm_1m_3}{r}}
+			\wze{F = -\frac{GMm}{r^2}}
+			\wze{v = \sqrt{\frac{2GM}{R}}}
+			\wzt{I Prawo Keplera: Wszystkie planety poruszają się po orbitach w kształcie elipsie, w której ognisku jest słońce}
+			\wzt{II Prawo Keplera: Linia łącząca planetę ze słońcem zakreśla w jednakowych odstępach czasu jednakowe pola powierzchni w płaszczyźnie orbity, czyli:}
+			\wze{const = \dv{S}{t} = \frac{1}{2}r^2\omega = \frac{L}{2m}}
+			\wzt{III Prawo Keplera: $T\to$ okres ruchu każdej planety na orbicie słońca, $M\to$ masa ciała wokół, którego krąży planeta $r\to$ promień albo półoś wielka - $a$. Dla satelity o masie $m$ orbitującej wokół ciała niebieskiego o masie $M$ na orbicie o promieniu $r$, w przypadku orbity eliptycznej o półosi wilkiej $a$}
+			\wze{T^2 = \frac{4\pi^2r^3}{GM}}
+			\wze{E_p = -\frac{GMm}{r}}
+			\wze{E_k = \frac{GMm}{2r}}
+			\wzh{dla orbity kołowej $E_m = -E_k$}{E_m = -\frac{GMm}{2r}}
+		\section{Płyny}
+				\wzh{gęstość próbki o stałej gęstości}{\rho = \frac{m}{V}}
+				\wze{p = \frac{F}{S}}
+				\wzh{$p_2$ i $p_1$ to ciśnienia na odpowiednio $y_2$ i $y_1$, gdzie $y_1>y_2$}{p_2 = p_1 + \rho g\qty(y_1-y_2)}
+			\wzm{Podnośnik/Prasa hydrauliczna}
+				\wze{\Delta p = \frac{F_{wej}}{S_{wej}} = \frac{F_{wyj}}{S_{wyj}}}
+				\wze{V = S_{wej}d_{wej} = S_{wyj}d_{wyj}}
+				\wze{W = F_{wej}d_{wej} = F_{wyj}d_{wyj}}
+				\wzh{Prawo Archimedesa}{F_w = m_{wp}g = V_c\rho_{wp}g}
+				\wze{F_{ciezar~pozorny} = F_{ciezar} - F_w}
+			\wzm{Płyny Doskonałe}
+				\wzh{$R_V~to$ szybkość przepływu objętości, równanie
+				ciągłości, strumień objętościowy}{R_V = Sv = const}
+				\wzh{Strumień masy}{R_m = \rho R_V = \rho Sv = const}
+				\wzh{Równanie Bernoulliego, $y,v,p~\to$ poziom, prędkość, ciśnienie}{p + \frac{1}{2}\rho v^2 + \rho gy = const}
+		\section{Drgania}
+			\wzm{Ruch Harmoniczny}
+				\wze{T = \frac{1}{f} = 2\pi f}
+				\wzh{częstość kołowa}{\omega = \frac{2\pi}{T}}
+				\wzh{położenie od czasu, $x_m\to$ amplituda, $\omega t +  \phi \to$ faza drgań, $\omega \to$ częstość kołowa, $\phi \to$ faza początkowa, $\to$ gdy $t_0 = 0$: $x_0 = x_m~\to~\phi = 0$}{x\qty(t) = x_m\cos\qty(\omega t + \phi)}
+				\wze{x_0 = -x_m \to \phi = \pi rad}
+				\wze{v\qty(t) = x'\qty(t) = -\omega x_m\sin\qty(\omega t + \phi)}
+				\wze{a\qty(t) = v\qty(t)' = x''\qty(t) = -\omega^2 x_m\cos\qty(\omega t + \phi) = -\omega ^2x\qty(t)}
+				\wzh{amplituda zmian prędkości}{v_m = \omega x_m}
+				\wzh{ampltuda zmian przyspieszenia}{a_m = \omega ^2x_m}
+				\wze{x\qty(t) = x\qty(t + kT)}
+				\wze{F = -\qty(m\omega^2)x}
+				\wzh{prawo Hooke'a}{F = -kx}
+				\wze{k = m\omega^2}
+				\wze{\omega = sqrt{\frac{k}{n}}}
+				\wze{T = 2\pi sqrt{\frac{k}{n}}}
+				\wze{E_k = \frac{1}{2}mv^2}
+				\wze{E_p = \frac{1}{2}kx^2 = \frac{1}{2}kx_m^2\sin^2\qty(\omega t + \phi)}
+				\wze{E = E_k + E_p = \frac{1}{2}kx_m^2}
+			\wzm{Wahadło Torsyjne}
+				\wzh{$\kappa\to$ moment kierujący}{T = 2\pi\sqrt{\frac{I}{\kappa}}}
+				\wze{M = -\kappa \theta}
+			\wzm{Wahadła, Ruch po okręgu}
+				\wzh{Wahadła matematycznego przy małym kącie}{T = \sqrt{\frac{I}{mgL}}}
+				\wzh{wahadło fizyczne, przy małym kącie, $h\to$ odległość środka masy od osi obrotu}{T = \sqrt{\frac{I}{mgh}}}
+			\wzm{Ruch Harmoniczny Tłumiony}
+				\wzh{$b\to$ stała tłumienia}{\vec{F_o} = -b\vec{v}}
+				\wzh{częstość kołowa oscylatora tłumionego}{\omega' = \sqrt{\frac{k}{m} - \frac{b^2}{4m^2}}}
+				\wze{x(t) = x_me^{\frac{-bt}{2m}}\cos(\omega't + \phi)}
+				\wzh{Dla małego $b$}{E(t) \approx \frac{1}{2}kx_m^2e^{\frac{-bt}{2m}}}
+			\wzm{Drgania Wymuszone i Rezonans}
+				\wzh{Drgania wymuszone}{x(t) = x_m\cos(\omega_{wym} t + \phi)}
+				\wzh{Rezonans}{\omega = \omega_{wym}}
+				\wze{v_m,~a_m,~x_m~jest~najwieksze~gdy~\omega = \omega_{wym}}
+		\section{Fale I}
+				\wzh{Fale sinusoidalne, $y_m\to$ amplituda}{y(x,t) = y_m\sin(kx - \omega t + \phi)}
+				\wzh{Fala przeciwna do danej wyżej}{y(x,t) = y_m\sin(kx + \omega t + \phi)}
+				\wzh{Wzór ogólny, $k\to$ liczba falowa, $x\to$ położenie, $y(x,t)\to$ przemieszczenie}{y(x,t) = y_m\sin(kx \pm \omega t + \phi)}
+				\wzh{Liczba falowa, $\lambda \to$ długość fali}{k = \frac{2\pi}{\lambda}}
+				\wzh{Częstość kołowa}{\omega = \frac{2\pi}{T}}
+				\wze{f = \frac{1}{T} = \frac{\omega}{2\pi}}
+				\wze{kx - \omega t = const}
+				\wze{v = \frac{\omega}{k} = \frac{\lambda}{T} = \lambda f}
+			\wzm{Fala w Napiętej Linie}
+				\wzh{$\mu \to$ gęstość liniowa liny, $T\to$ wartość siły naprężenia w linie}{v = \sqrt{\frac{T}{\mu}}}
+				\wze{\mu = \frac{m}{l}}
+				\wze{P_{sr} = \frac{1}{2}\mu v\omega^2y_m^2}
+				\wzh{Prędkość poprzeczna elementu}{u = -\omega y_m\cos\qty(kx - \omega t)}
+				\wze{dE_k = \frac{1}{2}dmu^2}
+			\wzm{Równanie Falowe}
+				\wze{\pdv[2]{y}{x} = \frac{1}{v^2}\pdv{y}{t}}
+			\wzm{Interferencja fal}
+				\wzh{Zasada superpozycji fal}{y\qty(x, t) = y_1\qty(x, t) + y_2\qty(x, t)}
+				\wzh{Fala wypadkowa dla dwóch fal w których, $k_1 = k_2,~\omega_1 = \omega_2,~f_1=f_2,~y_{m1} = y_{m2}$. Ponad to: $(2y_m \cos(\frac{1}{2}\phi))~\to$ amplituda, oraz $\sin(kc - \omega t + \frac{1}{2}\phi)~\to$ czynnik oscylacyjny}{y\qty(x, t) = \qty(2y_m \cos\qty(\frac{1}{2}\phi))\sin\qty(kc - \omega t + \frac{1}{2}\phi)}
+			\wzm{Wskazy}
+				\wzt{Dana jest fala $y_1(x, t) = y_{m1} \sin(kx - \omega t)$. Długość wskazu wynosi $y_m$, a jego prędkość kątowa wynosi $\omega$. Długość składowej $y$ wskazu jestrówna przemieszczeniu punktu w danej chwili. Dana jest fala $y_2(x, t) = y_{m2} \sin(kx - \omega t + \phi)$ kąt miedzy wskazami fali 1 i fali 2 to $\phi$. Sumą tych fal jest fala: $y(x, t) = y_m \sin(kx - \omega t +\beta)~\to$ fala wypadkowa, gdzie $\beta$ to faza poczatkowa. Ponad to wskazem fali wypadkowej jest suma wskazów fal składowych}
+			\wzm{Fale Stojące i Rezonans}
+				\wzh{Fala stojąca w linie umocowanej na obu końcach}{y(x,t) = 2y_m \sin(kx)~\cos(\omega t)}
+				\wzh{Amplituda w puncie x}{2y_m \sin(kx)}
+				\wzh{Dla dowolnego $n\neq$0 dla $n=1$ drganie podstawowe, dla $n=2$ druga harmoniczna itd.D}{f = \frac{v}{\lambda} = n\frac{v}{2L}}
+		\section{Fale II}
+			\wzm{Fala Dźwiękowa}
+				\wzh{Prędkość dźwięku,  $B\to$ moduł ściśliwości ośrodka}{v = \sqrt{\frac{B}{\rho}}}
+				\wzh{Względna zmiana objętości $\Delta V/V$ wywoływana przez zmiane ciśnienia $\Delta p$}{B = -\frac{\Delta p}{\Delta V/V}}
+				\wzh{przemieszczenie podłużne $s$ elementu masy, $s_m\to$ amplituda, $k = \frac{2\pi}{\lambda}$, $\omega = 2\pi f$}{s\qty(x,t) = s_m \cos\qty(kx - \omega t)}
+				\wzh{Zmiana ciśnienia względem ciśnienia równowagi}{\Delta p = \Delta p_m \sin\qty(kx - \omega t)}
+				\wzh{Amplituda zmian ciśnienia}{\Delta p_m = v\rho\omega s_m}
+				\wzh{Fale wysłane w tych samych fazach i w podobnych kierunkach, gdzie $\Delta L$ to różnica dróg przebytych}{\phi = \frac{\Delta L}{\lambda}2\pi}
+				\wzh{Warunek całkowcie konstruktywnej interferencji dla każdego $m \in \mathbb{N}$}{\phi = m\qty(2\pi)~lub~\frac{\Delta L}{\lambda} = m}
+				\wzh{Natęrzenie fali, $P\to$ moc fali, $S\to$ pole powierzchni do której dociera fala}{I = \frac{P}{S}}
+				\wze{I = \frac{1}{2}\rho v \omega^2 a_m^2}
+				\wzh{W odeległości $r$ o źródła o mocy $P_{zr}$}{I = \frac{P_{zr}}{4\pi r^2}}
+				\wzh{Głośność dźwięku, gdzie $I_0$ jest standardowym natężeniem dźwięku}{\beta = \qty(10~dB)\log~\frac{I}{I_0}}
+				\wze{I_0 = 10^{-12}\frac{W}{m^2}}
+				\wzh{Natężenie dźwięku pochodzące ze źródła liniowego, jak iskra przeskakująca o $L$}{I = \frac{P}{S} = \frac{P_{zr}}{2\pi rL}}
+			\wzm{Źródła dźwięku w muzyce}
+				\wzt{$v\to$ prędkość dzwięku w ośrodku będącym w środku rury, $L\to$ długość rury}
+				\wzh{Rura obustronnie otwarta, dla każdego $n \in \mathbb{N}~\to$}{f = \frac{nv}{2L}}
+				\wzh{Rura jednostronnie otwarta, dla każdego $n \in \mathbb{N}$}{f = \frac{\qty(2n+1)v}{4L}}
+				\wzh{Struna, n-ta harmoniczna}{L = \frac{n\lambda}{2}}
+			\wzm{Dudnienia}
+				\wzt{Powstaja gdy odbieramy dwie fale o nieznacznie róniacych sie częstotliwościach $f_1$ i $f_2$}
+				\wzh{Częstotliwość docierania dźwiękuów dudnienia}{f_{ddudn} = f_1 - f_2}
+				\wzh{Częstotliwość dźwięku dudnienia}{f_d = \frac{f_1 + f_2}{2}}
+			\wzm{Efekt Dopplera}
+				\wzh{Częstetliwość fali rejestrowanej przez detektor, gdy źródło przemieszcza się z prędkością $v_S$ a detektor z prędkością $v_D$,gdzie $v\to$ prędkość dźwięku w ośrodku. Gdy detektor ze źródłem zbliżają się do siebie $f' > f$,a gdy oddalają się $f' < f$ i tak należy dobrać znaki}{f' = f\frac{v \pm v_D}{v \pm v_S}}
+			\wzm{Prędkości Nadźwiękowe, Fale Uderzeniowe}
+				\wzt{$v_S\to$ prędkość ciała, $v\to$ prędkość dźwięku w ośrodku}
+				\wzh{Kąt Macha (połowa kąta wierzchołkowego stożka Macha)}{\sin \theta = \frac{v}{v_S}}
+				\wzh{Liczba Macha}{\frac{v_S}{v}}
+		\section{Termodynamika}
+				\wzh{Termometr gazowy}{T = \qty(273,16K)\qty(\lim_{ilosc~gazu~\to~0}~\frac{p}{p_3})}
+				\wzh{Punkt potrójny wody}{T_3 = 273,16K}
+				\wzh{Przliczanie z $K$ na $^oC$}{T_C = \qty(T - 273,15)^oC}
+				\wzh{Przliczanie z $^oC$ na $^oC$}{T_F = \qty(\frac{9}{5}T_C + 32)^oF}
+				\wzh{Zmiana objętości $V$ przy zmianie temperatury o $\Delta V$}{\Delta V = V\beta\Delta T}
+				\wzh{Współczynnik rozszerzalnosci cieplnej liniowej i objętościowej}{\beta = 3\alpha}
+				\wzh{Zmiana objętości $L$ przy zmianie temperatury o $\Delta L$}{\Delta L = L\alpha \Delta T}
+				\wze{1~cal = 4,1868~J}
+				\wzh{Związek zmiany tempertauryz pochłonietym ciepłem,gdzie $Q\to$ pochłoniete ciepło, $C\to$ pojemność cieplna, $c\to$ ciepło własciwe}{Q = C\qty(T_k - T_p) = cm\qty(T_k - T_p) = cm\Delta T}
+				\wzh{ciepło, które trzeba dostarczyć ciału o masie $m$ i cieple przemiany $c$ aby nastąpiła zmianna stanu skupienia}{q = c_pm}
+				\wze{Q>0 \to T_O > T_U}
+				\wzh{Praca gazu który zwiększa i zmiejsza swoją objętość}{W = \int_{V_p}^{V_k} pdV}
+				\wzh{I Zasada Termodynamiki, $W_u,~W_o~\to$ praca układu i wykonana nad układem}{\Delta E_w = Q - W_u + W_o}
+			\wzm{Niektóre szćzególne przypadki I Zasady Termodynamiki}
+				\wzh{Przemiana adiabatyczna}{Q = 0 ~ \Rightarrow ~ \Delta E_W =  -W}
+				\wzh{Przemiana ze stałą objętością}{W = 0 ~ \Rightarrow ~  \Delta E_W = Q}
+				\wzh{Przemiana - cykl zamknięty}{\Delta E_W = 0~ \Rightarrow ~Q = W}
+				\wzh{Przemiana - rozprężanie swobodne}{Q = W = 0 ~ \Rightarrow ~ \Delta E_W = 0}
+				\wzh{Strumień ciepła przepływającego przez płytke, gdzie $S$ i $L$ toPole powierzchni oraz grubość płytki, a $k$ to przwodność cieplna materiału}{P_{prze} = \frac{Q}{t} = kS\frac{T_G - T_Z}{L}}
+				\wzh{moc promieniowania cieplnego, gdzie $\sigma = 5,6704~10^{-8}~\frac{W}{m^2K^4}\to$ stała Stefana-Boltzmanna, $\varepsilon\to$ zdolność emisyjna powierzchni ciała, $T\to$ jego temperatura bezwzględna}{P_{prze} = \sigma \varepsilon ST^4}
+				\wzh{Moc absorbowania z otoczenia o temperaturze $T_O$}{P_{abs} = \sigma \varepsilon ST_O^4}
+				\wzh{Opór cieplny}{R = \frac{L}{kS}}
+				\wzh{Strumień ciepła przepływającego przez $i$ płytek}{P_{prze} = S\frac{T_G - T_Z}{\sum L_i/k_i}}
+		\section{Kinetyczna Teoria Gazów}
+				\wzh{Liczba Avogarda}{N_A = 6,02^{\vdot} 10^{23} mol^{-1}}
+				\wzh{Masa molowa, $m\to$ masa cząsteczek}{M = mN_A}
+				\wzh{Próbka substancji o masie $M_{pr}$, złożona z $N$ cząsteczek, zawiera n moli substancji}{n = \frac{N}{N_A} = \frac{M_pr}{M} = \frac{M_{pr}}{mN_A}}
+				\wzh{Rówananie stanu gazu doskonałego, $n\to$ liczba moli gazu}{pV = nRT}
+				\wzh{Stała gazowa}{R = 8,31\frac{J}{mol\vdot K}}
+				\wzh{Stała Boltzmanna}{pV = NkT~\to k = \frac{R}{N_A} = 1,38 \vdot 10^{-23} \frac{J}{K}}
+				\wzh{Praca gazu wykonana w wyniku przemiany izotermicznej}{W = nRT~\ln\frac{V_k}{V_p}}
+				\wzh{Praca gazu przy stałej objętości i ciśnieniu}{W = 0}
+				\wzh{Praca gazu, dopuszczając zmiane temperatury}{W = \int_{V_p}^{V_k} pdV}
+				\wze{p = \frac{nMv^2_{sr.kw.}}{3V} = \frac{nMv^2_{x~sr.kw.}}{3V}}
+				\wze{v^2_{sr.kw.} = \sqrt{\qty(v^2)_{sr}}}
+				\wze{v^2_{sr.kw.} = \sqrt{\frac{3RT}{M}}}
+				\wzh{}{E_{k~sr} = \frac{1}{2}mv^2{sr.kw.}}
+				\wzh{Średnia energia ruchu postepowego na cząsteczke, w zależności od $T$}{E_{k~sr} = \frac{3}{2}kT^2}
+				\wzh{Średnia droga swobodna $\lambda$, czyli odległość pokonywana średnio przez cząsteczke między kolejnymi zderzeniami, gdzie: $ \frac{N}{V} = \frac{p}{kT}~\to$ liczba cząsteczek na jednostke objętości, $d~\to$ średnica cząstek}{\lambda = \frac{1}{\sqrt{2}\pi d^2~N/V}}
+				\wzh{Rozkład prędkości Maxwella}{P\qty(v) = 4\pi \qty(\frac{M}{2\pi RT})^{3/2}v^2e^{\qty(-Mv^2)/\qty(2RT)}}
+				\wze{v_{sr} = \sqrt{\frac{8RT}{\pi M}}}
+				\wzh{Prędkości najbardziej prawdopodobna}{v_P = \sqrt{\frac{2RT}{M}}}
+				\wze{v^2_{sr.kw.} = \sqrt{\frac{3RT}{M}}}
+				\wzh{Ułamek czastek o predkości od $v_1$ do $v_2$}{\int^{v_2}_{v_1} P\qty(v)dv}
+				\wzh{Ułamek cząstek o prędkości z przeciału $dv$ o środku w $v$}{P\qty(v)dv}
+				\wzh{Energia wewnętrzna dowolnego gazu doskonałego}{E_w = nC_VT}
+			\wzm{Dla stałej objętości}
+				\wze{\Delta E_w = Q = nC_V\Delta T}
+				\wzh{gaz jednoatomowy, gdzie $C_V$ to molowe ciepło własciwe przy stałym $V$}{C_V = \frac{3}{2}R = 12,5J/\qty(mol\vdot K)}
+			\wzm{Dla stałego cisnienia}
+				\wzh{Molowe ciepło własciwe $C_p$ przy stałym $p$}{Q = nC_p\Delta T}
+				\wze{W = p\Delta V = nR\Delta T}
+				\wze{C_p = C_V + R}
+				\wzh{Dla dowolnego gazu jednoatomowego}{C_p = \frac{5}{2}R}
+				\wzt{Każdy rodzaj cząstek charakteryzuje pewna ilość stopni swobody $f$, które dają cząsteczce niezależne sposoby przechowywania energii. Na każdy stopień swobody przypada średnio energia równa $\frac{1}{2}kT$ na cząsteczke, lub $\frac{1}{2}RT$ w przeliczeniu na mol}
+				\wze{C_V = \frac{f}{2}R}
+				\wze{E_w = \frac{f}{2}nRT}
+				\wzh{Dla gazu jednoatomowego}{f = 3}
+				\wzh{Dla gazu dwuatomowego}{f = 5}
+				\wzh{Dla gazu wieloatomowego, gdzie wynik jest niedoszacowany}{f = 6}
+				\wzh{Rozprężanie adiabatyczne}{pV^\gamma = const}
+				\wze{\gamma = \frac{C_p}{C_V}}
+		\section{Entropia i II Zasada Termodynamiki}
+				\wzh{Rozprężanie swobodne}{pV = const}
+				\wze{TV^{\gamma -1} = const}
+				\wzh{Definicja zmiany entropi}{\Delta S = \int^{konc}_{pocz}\frac{dQ}{T}}
+				\wzh{}{\Delta S = \frac{Q}{T}}
+				\wzh{Zmiana entropii w przmianie izotermicznej rzy małej zmianie temperatury}{\Delta S = \frac{Q}{T_{sr}}}
+				\wzt{Entropia układu zamkniętego wzrasa w przemianach nieodwracalnych i nie zmiania się w odwracalnych}
+				\wzh{Druga Zasada Termodynamiki}{\Delta S \geqslant 0}
+			\wzm{Silnik Carnota}
+				\wzh{Sprawność dowolnego silnika}{\eta = \frac{W}{Q_G}}
+				\wzh{Sprawność silnika Carnota}{\eta = 1 - \frac{Q_Z}{Q_W} = 1 - \frac{T_Z}{T_W}}
+			\wzm{Chłodziarki}
+				\wzh{Współczynnik wydajności dowolnej chłodziarki}{K = \frac{Q_Z}{W}}
+				\wzh{Współczynnik wydajności chłodziarki Carnota}{K_C = \frac{T_Z}{T_G - T_Z}}
+		\section{Elektrodynamika}
+			\wzm{Prawo Coulomba}
+				\wzh{Prawo Coulomba}{\vec{F_C} = k\frac{q_1q_2}{r^2}\hat{r}}
+				\wzh{Stała elektryczna}{k = \frac{1}{4\pi \varepsilon_0} = 8,99 10^9 \frac{Nm^2}{C^2}}
+				\wzh{Przenikalność elektryczna próżni}{\varepsilon_0 = 8,85 10^{-12}\frac{C^2}{Nm^2}}
+				\wze{C = A * s}
+				\wzh{Natężenie prądu}{I = \dv{q}{t}}
+				\wzh{Wartość ładunku elementarnego}{e = 1,602 10^{-19} C}
+			\wzm{Pole Elektryczne}
+				\wzh{Natężenie pola elektrycznego w danym punkcie, czyli stosunek siły działającej na ładunek próbny $q_0$ do tego ładunku}{\vec{E} = \frac{\vec{F}}{q_0}}
+				\wze{\vec{E} = \frac{1}{4\pi \varepsilon_0}\frac{q}{r^2}\hat{r}}
+				\wze{E = \frac{F}{q_0} = \frac{1}{4\pi \varepsilon_0}\frac{|q|}{r^2}}
+				\wze{\vec{E_{wyp}} = \frac{\vec{F_{wyp}}}{q_0} = \int_{i=1}^{n} \vec{E_n}}
+				\wzh{Dipol elektryczny względem punktu P na osi o odległości z od środka dipola i o odległosci d między cząstkami}{E = \frac{q}{2\pi \varepsilon_0 z^3} \frac{d}{\qty(1-\qty(\frac{d}{2z})^2)^2}}
+				\wzh{Dipol elektryczny dla dużych odleglości}{E = \frac{1}{2\pi \varepsilon_0} \frac{qd}{z^3}}
+				\wzh{Elektryczny moment dipolowy}{\vec{p} = qd}
+				\wzh{Pole naładowanego pierścienia na jego osi}{E = \frac{qz}{4\pi \varepsilon_0 \qty(z^2 + R^2)^{3/2}}}
+				\wzh{Pole naładowanego pierścienia daleko od niego}{E = \frac{1}{4\pi \varepsilon_0 }\frac{q}{z^2}}
+				\wzh{Pole naładowanej tarczy o promieniu $R$, na jej osi w odległości $z$}{E = \frac{\sigma}{2\varepsilon_0}\qty(1 - \frac{z}{\sqrt{z^2 + R^2}})}
+				\wzh{Pole naładowanej tarczy o promieniu $R$, gdzie $R\to \infty$}{E = \frac{\sigma}{2\varepsilon_0}}
+				\wzh{Ładunek w polu elektrycznym}{\vec{F} = q\vec{E}}
+				\wzh{Moment siły działający na dipol}{\vec{M} = \vec{p} \times \vec{E}}
+				\wzh{Wartość momentu siły działającego na dipol}{M = pE \sin\theta}
+				\wzh{Energia potencjalna dipola}{E_p = -\vec{p} \vdot \vec{E} = -pE~\cos~\theta}
+			\wzm{Prawo Gaussa}
+				\wzh{Całkowity strumień elektryczny}{\varPhi = \int \vec{E} \vdot d\vec{S}}
+				\wzh{Jednorodne pole, płaska powierzchnia}{\varPhi = \qty(E~\cos~\theta)S}
+				\wzh{Wypadkowy strumień (kółko oznacza całkowanie po wszytkich powierchniach płaszczyzny)}{\varPhi = \oint \vec{E} \vdot d\vec{S}}
+				\wzh{Prawo Gaussa, spełnione w próżni i w przybliżeniu w powietrzu}{q_{wewn} = \varepsilon_0 \varPhi = \varepsilon_0 \oint \vec{E} \vdot d\vec{S}}
+				\wzh{Pole elektryczne na powierzchni przewodnika na małe powierchni przewodnika walcowego (na tyle małej aby uznac ja za płaską)}{E = \frac{\sigma}{\varepsilon_0}}
+				\wzh{Naładowana linia prosta, gdzie $r$ to odległość od lini}{\frac{\lambda}{2\pi \varepsilon_0r}}
+				\wzh{Naładowana płaszczyzna pomijając zakrzywienie pola na brzegach}{E = \frac{\sigma}{2\varepsilon_0}}
+				\wzh{Naładowna powłoka kulista, gdzie $r \leq R \to$ odległość od środka powłoki}{E = \frac{1}{4\pi \varepsilon_0}\frac{q}{r^2}}
+				\wzh{Naładowana powłkoa kulista, gdzie $r<R$}{E = 0}
+				\wzh{Jendorody rozkład sferyczny ładunek, gdzie $r<R$, $r\to$ promień powierzchni Gaussa, $R\to$ Promień rozkładu ładunku, $q\to$ cały ładunek}{E= \qty(\frac{q}{4\pi \varepsilon_0R^3})r}
+			\wzm{Potnecjał Elektryczny}	
+				\wzh{Elektryczna energia potencjalna}{E_p = qV}
+				\wzh{Przenesienie cząstki z punktu o potnecjale $V_p$ do punktu o potencjale $V_k$}{\Delta E_p = q\Delta V = q\qty(V_k - V_p)}
+				\wzh{Zmiana energi kinetycznej w związku z pokoniem różnicy potencjałów}{\Delta E_k = -q\Delta V = -q\qty(V_k - V_p)}
+				\wzh{Praca siły zewnątrznej}{\Delta E_k = -\Delta E_p + W_{zew}= -q\Delta V + W_{zew}}
+				\wzh{Elektronowolty - energia}{1eV = 1,602 \vdot 10^{-19}J}
+				\wzh{Obliczanie potencjału na podstawie pola, całka po drodze cząstki}{\Delta V = -\int^k _p \vec{E} \vdot d \vec{s}}
+				\wzh{Pole jednorodene}{\Delta V = -E\Delta x}
+				\wzh{Potencjał elektryczny naładowanej cząstki}{V = \frac{1}{4\pi \varepsilon_0}\frac{q}{r}}
+				\wzh{Dla n naładowanych cząstek}{V_n = \sum^n _{i=1} V_i  = \frac{1}{4\pi \varepsilon_0} \sum^n _{i=1} \frac{q}{r}}
+				\wzh{Potencjał elektryczny dipolu}{V = \frac{1}{4\pi \varepsilon_0} \frac{p~\cos \theta}{r^2}}
+				\wzh{Potencjał pola ładunku o ciągłym rozkładzie}{V = \int dV = \frac{1}{4\pi \varepsilon_0} \int \frac{dq}{r}}
+				\wzh{Potencjał elektryczny naładowanej lini w oległości $d$ o długości $L$}{V  = \int dV = \frac{\lambda}{4\pi \varepsilon_0}~\ln\left[ \frac{L + \qty(L^2 + d^2)^{1/2}}{d} \right]}
+				\wzh{Potencjał elektryczny naładowanej tarczy w punkcie na protsej przechodzącej przez środek tarczy i do niej prostopadłej w odległości $z$}{V = \int dV = \frac{\sigma}{2\varepsilon_0} \qty(\sqrt{z^2 + R^2} - z)}
+				\wzh{Składowa natężenia pola w kierunku $x$ na podstawie potencjału}{\vec{E_x} = \pdv{V}{x}}
+				\wzt{Całkowita energia potencjalna układu czastek jest sumą energi potencjalnych każdej pary naładowanych cząstek}
+				\wzh{Elektryczna energia potencjalna układu dwuch czastek}{E_p = \frac{1}{4\pi \varepsilon_0} \frac{q_1 q_2}{r}}
+				\wzt{Nadmiar ładunku umieszczony na izolowanym przewodniku rozkłada się na powierzchni tego przewodnika w tak, że wszytkie punkty tego przewodnikauzyskują ten sam potencjałnawet jeśli przewodnik posiada wnęke}
+			\wzm{Pojemność elektryczna}
+				\wzh{Pojemnośc elektryczna - proporcja ładunku i napięcia}{q = UC}
+				\wzh{Związek pola elektrycznego z ładunkiem na okładkach kondensatora}{\varepsilon_0 \oint \vec{E} \vdot d \vec{s} = q}
+				\wzh{Związek zmiany potencjału z ładunkiem na okładkach kondensatora, całka po dowolnej drodze z jednej okładki kondensatora na drugą}{V_k - V_p = -\int^{k}_{p} \vec{E} \vdot d\vec{s}}	
+				\wzh{Pojemność elektryczna kondensatora płaskiego, gdzie $d$ to odległość między okładkami a $S$ to ich powierzchnia}{C = \frac{\varepsilon_0 S}{d}}
+				\wzh{Pojemność elektryczna kondensatora walcowego}{C = 2\pi \varepsilon_0 \frac{L}{\ln \qty(b/a)}}
+				\wzh{Pojemność elektryczna kondensatora kulistego}{C = 4\pi \varepsilon_0 \frac{ab}{b-a}}
+				\wzh{Izolowana kula jako kondensator}{C = 4\pi \varepsilon_0 R}
+				\wzh{Kondensatory połączone równolegle}{C_{rw} = \sum_{j=1}^n C_j}
+				\wzh{Kondensatory połączone szeregowo}{\frac{1}{C_{rw}} = \sum_{j=1}^n \frac{1}{C_j}}
+				\wzh{Energia potencjalna naładowanego kondensatora}{E_p = \frac{q^2}{2C} = \frac{1}{2}CU^2}
+				\wzh{Gęstość energi, czyli energia na jednostke objętości w polu elektrycznym}{u = \frac{1}{2}\varepsilon_0E^2}
+				\wzh{Prawo Gaussa w dielektryku}{\varepsilon_0 \oint \varepsilon _r \vec{E} \vdot d\vec{S} = q}
+			\wzm{Prąd i opór elektryczny}
+				\wzh{Defnicja natężenia prądu}{I = \dv{q}{t}}
+				\wzh{Gęstość prądu $\vec{J}$}{I = \int \vec{J} \vdot d\vec{S}}
+				\wzh{Gęstość prądu, gdy przepływ prądu przez powierzchnię jest stały}{J = \frac{I}{S}}
+				\wzh{Prędkość unoszenia dryftu, gdzie $n$ to liczba nośników na jednostke objętości w przewodniku o długości $L$ i polu powierzchni $S$}{\vec{J} = \qty(ne)\vec{v_d}}
+				\wzh{Opór elektryczny}{R = \frac{U}{I}}
+				\wzh{Opór elektryczny właściwy materiału}{\rho = \frac{E}{J}}
+				\wzh{Opór elektryczny właściwy materiału w postaci wektorowej}{\vec{E} = \rho \vec{J}}
+				\wzh{Przewodność elektryczna właściwa}{\sigma = \frac{1}{\rho}}
+				\wzh{Opór elektryczny}{R = \rho \frac{L}{s}}
+				\wzh{Opór własciwy $\rho$ w zależności z temperaturą, gdzie $T_0$ to temperatura odniesienia a $\rho _0$ to $\rho$ w $T_0$, a $\alpha$ to współczynnik temperaturowy oporu własciwego materiału}{\rho - \rho _0 = \rho _0 \alpha\qty(T - T_0)}
+				\wzh{Moc elektryczna}{P = IU}
+				\wzh{Rozpraszanie energi termcznej w oporniku}{P = I^2R = \frac{U^2}{R}}
+				\wzh{Zakładając, że elektrony przewodnictwa w metalu są swobodne i mogą poruszać się jak czasteczki w gazie możemy wyprowadzić wyrażnie opisujące opór własciwy metalu, gdzie n to liczba elektronów swobodnych w jednostce objętości i $\tau$ jest średnim czasem między zdeżeniami elektronów, a $m$ to masa elektronu}{\rho = \frac{m}{e^2 n\tau}}
+			\wzm{Obwody elektryczne}
+				\wzh{Definicja SEM, gdzie $dW$ to praca nad ładunkiem jednostkowym prezenosząc go z jednego bieguna na drugi}{\SEM = \dv{W}{q}}
+				\wzh{$I$ w zalezności od $\SEM$}{I = \frac{\SEM}{R}}
+				\wzt{\textbf{Pierwsze prawo Kirchhoffa}. Suma natężeń wpływających do dowolnego węzła musić być sumą natężeń wypływających z tego węzła}
+				\wzt{\textbf{Drugie prawo Kirchhoffa}. Algebraiczna suma zmian potencjałów napotykanych przy pełnym przejściu oczka musi być $0$}
+				\wzh{N oporników połączonych szeregowo}{R_{rw} = \sum_{j=1}^n R_j}
+				\wzh{Moc źródła SEM}{P_{SEM} = I\SEM}
+				\wzh{N oporników połączonych szeregowo}{\frac{1}{R_{rw}} = \sum_{j=1}^n \frac{1}{R_j}}
+				\wzh{Ładowanie kondensatora}{q = C\SEM\qty(1-e^{-t/RC})}
+				\wzh{Ładowanie kondensatora}{I = \dv{q}{t} = \qty(\frac{\SEM}{R})e^{-t/RC}}
+				\wzt{Ładownay kondensator upływie długiego czasu zachowuje się jak przerwa w obwodzie a poczatkowo jak przewodnik bez oporu}
+				\wzh{Napięcie - Ładowanie kondensatora}{U_C = \frac{q}{C} = \SEM \qty(1-e^{-t/RC})}
+				\wzh{Stała czasowa kondensatora - w ciągu czasu $\tau$ ładunek na kondensatorze wzrasta z 0 do do 63\% końcowej wartości $C\SEM$}{\tau = RC}
+				\wzh{Rozładowanie kondensatora}{q\qty(t) = q_0e^{-t/RC}}
+				\wzh{Rozładowywanie kondensatora}{I = \dv{q}{t} = -\qty(\frac{q_0}{RC})e^{-t/RC}}
+			\wzm{Pole magnetyczne}
+				\wzh{Wektor induckji magnetycznej}{\vec{F}_B = q\vec{v}\cross \vec{B}}
+				\wzh{Wartość induckji magnetycznej}{{F}_B = \abs{q}vB\sin\theta}
+				\wze{1T = \frac{N}{A \dotproduct m}}
+				\wzh{Pole magnetyczne ziemii}{B_Z = 10^{-4}T}
+				\wzh{Czątka naładowana o masie $m$ i ładunku $\abs{q}$ o prędkości $\vec{v}$ prostopadłej do $\vec{B}$ będzie porszać się po okręgu o promieniu $r$}{r = \frac{mv}{\abs{q}B}}
+				\wzh{Częstotliwość $f$ i częstość kołowa $\omega$ oraz okres $T$ tego ruchu}{f = \frac{\omega}{2\pi} = \frac{1}{T} = \frac{\abs{q}B}{2\pi m}}
+				\wzh{Częstotliwość cyklotronu}{\pi = \pi _{gen}}
+				\wzh{Siła działając an przewodnik z prądem}{\vec{F}_B = I\vec{L} \cross \vec{B}}
+				\wzh{Zakrzywiony przewodnik z prądem}{d\vec{F}_B = Id\vec{L} \cross \vec{B}}
+				\wzh{Na cewke w jednorodnym polu magnetycznym $\vec{B}$ o $N$ zwojach i polu przekroju $S$ przez którą płynie prąd $I$ działa moment siły $M$}{\vec{M} = \vec{\mu} \cross \vec{B}}
+				\wzh{Moment magnetyczny cewki}{\mu = NIS}
+				\wzh{Energia potencjalna}{E_p\qty(\theta) = -\vec{\mu} \dotproduct \vec{B}}
+				\wzh{Stała magnetyczna w próżni}{\mu _0 = 4\pi10^{-7}\frac{T\cdot m}{A}}
+				\wzh{prawo Biota-Savarta}{d\vec{B} = \frac{\mu _0}{4\pi} \frac{Id\vec{s} \cross \hat{r}}{r^2}}
+				\wzh{Długi przewód prostoliniowy}{B = \frac{\mu _0I}{2\pi R}}
+				\wzh{Prostoliniowy przewód ograniczony z jednej strony}{B = \frac{\mu _0I}{4\pi R}}
+				\wzh{W środku łuku okręgu}{B = \frac{\mu _0I \phi}{2\pi R}}
+				\wzh{Siła działająca na dwa przewody równoległe, gdzie d to odległość}{F_{ba} = I_bLB_a\sin 90^{\circ} = \frac{\mu _0LI_aI_b}{2\pi  d}}
+				\wzh{Prawo Ampère’a, gdzie $I_p$ to natęzenie prądu przepływajace przez powierzchnię objęta konturem całkowania}{\oint \vec{B} \dotproduct d\vec{s} =  \mu _0I_p}
+				\wzh{Solenoid idealny  gdzie $n$ to liczba zwojów na jednostke długości}{B = \mu _0In}
+				\wzh{Toroid, gdzie $N$ to liczba zwojów}{B = \frac{\mu _0IN}{2\pi} \frac{1}{2}}
+			\wzm{Zjawisko indukcji i indukcyjności}
+				\wzh{Strumień magnetyczny}{\varPhi _B = \int \vec{B} \dotproduct d\vec{S}}
+				\wzh{$\vec{B} \perp S$, $\vec{B}$ jednorodne}{\varPhi _B = BS}
+				\wzh{Prawo Faradaya, $\SEM$ to indukowana SEM}{\SEM = -\dv{\varPhi _B}{t}}
+				\wzh{Cewka o $N$ zwojach}{\SEM = -N\dv{\varPhi _B}{t}}
+				\wzt{\textbf{Reguła Lenza}. Prąd indukowany płynie w takim kierunku, że pole magnetyczne wytworzone przez ten prąd przeciwdziała zmianie strumienia magnetycznego, która ten prąd indukuje}
+				\vspace{5mm}
+				\wzh{Prawa Faradaya 2}{\oint \vec{E} \dotproduct d\vec{s} = -\dv{\varPhi _B}{t}}
+				\wzh{Defincja indukcyjności cewki, gdzie $N$ to liczba zwojów}{L = \frac{N\varPhi _B}{I}}
+				\wzh{Indukcyjność solenoidu na jednostke długości}{\frac{L}{l} = \mu _0 n^2 S}
+				\wzh{Indukcyjność solenoidu}{L = \frac{N \varPhi _B}{I}}
+				\wzh{SEM samoindukcji}{\SEM_L = -L\dv{I}{t}}
+				\wzh{Obwód RL}{\SEM = L\dv{I}{t} + RI}
+				\wzh{Wzrost natężenia prądu w RL}{I = \frac{\SEM}{R} \qty(1 - e^{-t/\tau_L})}
+				\wzh{Stała czasowa}{\tau _L}
+				\wzh{Zmniejszanie się natężenia prądu gdy nagle zostanie odpięte źródło}{I\qty(t) = \frac{\SEM}{r}e^{-t/\tau_L} = I_0e^{-t/\tau_L}}
+				\wzh{Energia magnetyczna}{E_B = \frac{1}{2}LI^2}
+				\wzh{Gęstość energii matgnetycznej}{\mu _B = \frac{B^2}{2\mu _0}}
+				\wzh{Indukcja wzajemna dwóch cewek gdzie $M$ to indukcjyjność wzajemna}{\SEM_2 = -M\dv{I_1}{t}}
+				\wze{M_{21} = M_{12} = M}
+
+			\wzm{Drgania elektromagnetyczne i prąd zmienny}
+				\wzmm{Drgania obwodu LC}
+					\wze{E_E = \frac{q^2}{2C}}
+					\wze{E_B = \frac{LI^2}{2}}
+					\wze{\omega = \frac{1}{\sqrt{LC}}}
+					\wze{L\dv[2]{q}{t} + \frac{q}{C} = 0}
+					\wze{q = q_{max}\cos(\omega t + \phi)}
+					\wze{I = \dv{q}{t} = -\omega q_{max} \sin(\omega t + \phi) = -I_{max}\sin(\omega t + \phi)}
+					\wze{I_{max} = \omega q_{max}}
+					\wze{E_E = \frac{q_{max}^2}{2C} \cos[2](\omega t + \phi)}
+					\wze{E_B = \frac{q_{max}^2}{2C} \sin[2](\omega t + \phi)}
+
+				\wzmm{Drgania tłumione w obwodzie RLC}
+					\wzh{Częstość kołowa drgań tłumionych}{\omega' = \sqrt{\omega^2 - \qty(R/2L)^2}}
+					\wze{E = E_B + E_E = \frac{q^2}{2C} + \frac{LI^2}{2}}
+					\wze{\dv{E}{t} = -I^2R}
+					\wze{L\dv[2]{q}{t} + R\dv{q}{t} + \frac{q}{c}}
+					\wze{q = q_{max}e^{-Rt/2L} \cos(\omega't + \phi)}
+					\wze{E_E = \frac{q^2_{max}}{2C}e^{-Rt/L}\cos[2](\omega't + \phi)}
+					\wzh{Drgania w szeregowym obwodzie RLC wymuszone przez zewnętrzną $\SEM$}{\SEM = \SEM_{max}\sin(\omega_wt)}
+					\wzh{Natężenie pradu płynące w takim obwodzie}{I = I_{max}\sin(\omega_wt - \phi)}
+
+				\wzmm{Obciążenie czysto oporowe}
+					\wze{U_{Rmax} = I_{Rmax}R}
+					\wze{U_R = U_{Rmax}\sin(\omega_wt) = \SEM_{Rmax}\sin(\omega_wt)}
+					\wze{I_R = I_{Rmax}\sin(\omega_wt - \psi)}
+					\wze{\psi = 0}
+
+				\wzmm{Obciążenie czysto pojemnościowe}
+					\wzh{Rektancja pojemnościowa}{X_C = \frac{1}{\omega_wC}}
+					\wze{U_C = U_{Cmax}\sin(\omega_wt)}
+					\wze{I_C = \omega_wCU_{maxC}\cos(\omega_wt)}
+					\wze{I_C = I_{Cmax}\sin(\omega_wt - \phi)}
+					\wze{U_{cmax} = I_{Cmax}X_C}
+					\wze{\phi = -90^{\circ} = \pi/2~rad}
+					
+				\wzmm{Obciążenie czysto indukcyjne}
+					\wzh{Rektancja indukcyjna}{X_L = \omega_wL}
+					\wze{U_L = U_{Lmax}\sin(\omega_wt)}
+					\wze{I_L = -\qty(\frac{U_{Lmax}}{\omega_wL})\cos(\omega_wt)}
+					\wze{I_L = I_{Lmax}\sin(\omega_wt - \phi)}
+					\wze{U_{Lmax} = I_{Lmax}X_L}
+					\wze{\phi = 90^{\circ} = \pi/2~rad}
+
+				\wzmm{Podsumowanie trzech obwodów}
+					\wzt{Natężenie $I_R$ w takiej samej fazie jak napięcie $U_R$}
+					\wzt{Natężenie $I_C$ wyprzedza napięcie $U_C$ o $90^{\circ}$}
+					\wzt{Natężenie $I_C$ opóźnia się względem napięcia $U_C$ o $90^{\circ}$}
+
+				\wzmm{Obwód szeregowy RLC}
+					\wzh{Przyłożona SEM}{\SEM = \SEM_{max}\sin(\omega_wt)}
+					\wze{I = I_{max} \sin(\omega_2t - \phi)}
+					\wzh{Impendancja obwodu}{Z = \sqrt{R^2 + (X_L - X_C)^2}}
+					\wze{I_{max} = \frac{\SEM_{max}}{Z}}
+					\wzh{Faza początkowa, kąt między wskazami }{\tan \phi = \frac{X_L - X_C}{R}}
+
+					\wzh{Obwód o charakterze indukcyjnym, $I_{max}$ wiruje za wskazem $\SEM_{max}$}{X_L>X_C,~ \phi > 0}
+					\wzh{Obwód o charakterze pojemnościowym, $I_{max}$ wiruje przed wskazem $\SEM_{max}$}{X_L<X_C,~ \phi < 0}
+					\wzh{Obwód w rezonansie, $I_{max}$ wiruje razem ze wskazem $\SEM_{max}$}{X_L=X_C,~ \phi = 0}
+
+					\wzh{Rezonans w obwodzie RLC, maksymalne I}{\omega_w = \omega = \frac{1}{\sqrt{LC}}}
+
+				\wzmm{Moc w obwodach prądu zmiennego}
+					\wzh{Moc chwilowa}{P = I_{max}^2\sin[2](\omega_wt - \phi)}
+					\wzh{Moc średnia}{P_{sr} = \qty(\frac{I_{max}}{\sqrt{2}}) = I_{sk}^2R = \SEM_{sk}U_{sk}\cos \phi}
+					\wzh{Wartość skuteczna natężenia}{I_{sk} = \frac{I_{max}}{\sqrt{2}}}
+					\wzh{Wartość skuteczna prądu}{U_{sk} = \frac{U_{max}}{\sqrt{2}}}	
+					\wzh{Wartość skuteczna SEM}{\SEM_{sk} = \frac{\SEM_{max}}{\sqrt{2}}}
+					\wzt{Współczynnik mocy $\to \cos \phi$}
+
+				\wzmm{Transformatory}
+					\wzh{Transformacja napięcia}{U_w = U_p\frac{N_w}{N_p}}
+					\wzh{Transformacja prądu}{I_w = I_p\frac{N_p}{N_w}}
+
+			\wzm{Równania Maxwella: magnetyzm materii}
+					\wzh{Natężenie prądu przesunięcia}{I_{prz} = \varepsilon_0}
+
+				\wzmm{Równania Maxwella}
+					\wzh{Prawo Gaussa dla elektryczności}{\oint \vec{E} \dotproduct d\vec{S} = \frac{q_{wewn}}{\varepsilon_0}}
+					\wzh{Prawo Gaussa dla magnetyczności}{\oint \vec{B} \dotproduct d\vec{S} = 0}
+					\wzh{Prawo Faradaya}{\oint \vec{E} \dotproduct d\vec{s} = -\dv{\varPhi}{t}}
+					\wzh{Prawo Ampère’a - uogulnione}{\oint \vec{B} \dotproduct d\vec{s} = \mu_0\varepsilon_0\dv{\varPhi}{t} + \mu_0I_p}
+
+				\wzmm{Magneztyzm materii}
+					\wzh{Zależność spinowego momentu pędu (zwanego spinem)$\vec{S}$ oraz spinowego momentu magnetycznego $\vec{\mu}_s$}{\vec{\mu}_S = -\frac{e}{m}\vec{S}}
+					\wzh{Składowa spinu $\vec{S}_x$ może przyjmować tylko dwie wartości, gdzie h to stała plancka}{\vec{S}_z = m_s\frac{h}{2\pi}~~m_s = \pm \frac{1}{2}}
+					\wzh{Z faktu poniżej wynika podobna zależność dla spinowego momentu magnetycznego}{\mu_{s, z} = \pm \frac{eh}{4\pi m} = \pm \mu_B}
+					\wzh{Magneton Bohra}{\mu_B = \frac{eh}{4\pi m}}
+					\wzh{Energia elektronu w pol magnetycznym $\vec{B}$}{E_p = -\vec{\mu}_s \dotproduct \vec{B}}
+					\wzh{Zależność orbitalnego momentu pędu $\vec{L}_{orb}$ oraz orbitalnego momentu magnetycznego $\vec{\mu}_{orb}$ elektronu w atomie}{\vec{\mu}_{orb} = -\frac{e}{2m}\vec{L}_{orb}}
+					\wzh{Orbitalny moment pędu}{\vec{L}_{orb} = m_l\frac{h}{2\pi}~~m_l = 0, \pm1, \pm2, \pm3, \pm max}
+					\wzt{\textbf{Diamagnetyzm}. \begin{addmargin}[2em]{0em}Diamagnetyki przejawiają własciwości magnetyczne tylko w zewnętrznym polu magnetycznym stają się one wtedy dipolami skierowanymi przeciwnie do pola, znajdujące się w niejednorodnym polu magnetycznym wypychanę są do obszarów słabszego pola \end{addmargin}}
+					\wzh{\textbf{Paramagnetyzm}. \begin{addmargin}[2em]{0em}Paramagnetyki przejawiają własności magnetyczne w zalęzności od stopnia namagnesowania $M$, znajdujące się w niejednorodnym polu magnetycznym przyciągane są do obszarów silniejszego pola \end{addmargin}}{M = \frac{zmierzony ~moment~magnetyczny}{V}}
+					\wzh{Dla małych wartości $B_{zew}/T$ , gdzie $T$ jest temperaturą, a $C$ stałą Curie}{M = C\frac{B_{zew}}{T}}
+					\wzt{\textbf{Ferromagnetyzm}. \begin{addmargin}[2em]{0em}Ferromagnetyki to materiały o silnych i trwałych własciwościach magnetycznych, znajdujące się w niejednorodnym polu magnetycznym przyciągane są do obszarów silniejszego pola\end{addmargin}}
+					\wzh{\begin{addmargin}[2em]{0em}Ferromagnetyzm znika gdy temperatura przekroczy Temperature Curie}{T_{C~Fe} = 1043K}\end{addmargin}
+					\wzh{\begin{addmargin}[2em]{0em}Pierścień Rowlanda}{B_0 = \mu_0I_Pn}
+					\wze{B = B_0 + B_M}\end{addmargin}
+	\end{flushleft}
+\end{document}
